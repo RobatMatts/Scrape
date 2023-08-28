@@ -32,7 +32,10 @@ if new_paragraphs:
     if response.status_code == 204:
         print("New text update sent to Discord.")
     else:
+        error_message = "@everyone new promo but I am broken beep boop please check manually"
         print("Failed to send new text update to Discord. Status code:", response.status_code)
+        data = {"content": error_message}
+        requests.post(webhook_url, json=data)  # Send the error message to Discord
 
     # Update the previous_content.txt file with new paragraphs
     with open("previous_content.txt", "w") as f:
