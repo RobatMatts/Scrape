@@ -4,7 +4,7 @@ import os
 
 # URLs
 source_url = "https://biotechresearchreport.com/disclaimer/"
-webhook_url = "https://discord.com/api/webhooks/1144016412185202738/f7txAsKyss6Gcqkjf4GpPx6-8TajNALmUM0IZ3Wk8pvqiVFGBR0V0ENdhK_7DIeupuOh"
+webhook_url = "https://discord.com/api/webhooks/1144028487036981310/JCEHbKYUXLKXqg1Rh6ookQ6YG3iXpFaecc3TZJn_jgB1kRNaBvGhFFqkXfahQXD8Ccdm"
 
 # Fetch current content
 response = requests.get(source_url)
