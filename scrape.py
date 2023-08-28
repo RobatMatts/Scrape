@@ -1,5 +1,6 @@
 import requests
 import re
+import os
 
 # URLs
 source_url = "https://biotechresearchreport.com/disclaimer/"
@@ -16,11 +17,10 @@ paragraphs = re.findall(r'Pursuant.*?(?=<)', new_content, re.DOTALL)
 new_text_message = '\n'.join(paragraphs)
 
 # Load previous content
-try:
+previous_paragraphs = ""
+if os.path.exists("previous_content.txt"):
     with open("previous_content.txt", "r") as f:
         previous_paragraphs = f.read()
-except FileNotFoundError:
-    previous_paragraphs = ""
 
 # Find the new content by comparing with previous content
 new_paragraphs = new_text_message.strip().replace(previous_paragraphs.strip(), '').strip()
@@ -41,11 +41,12 @@ if new_paragraphs:
     # Save the new content to debug.txt for troubleshooting
     with open("debug.txt", "w", encoding="utf-8") as debug_file:
         debug_file.write(new_paragraphs)
+
+    # Commit and push changes to the repository
+    os.system("git config --global user.name 'GitHub Actions'")
+    os.system("git config --global user.email 'actions@github.com'")
+    os.system("git add previous_content.txt debug.txt")
+    os.system("git commit -m 'Update previous_content.txt and debug.txt'")
+    os.system("git push")
 else:
     print("No new text to send.")
-
-
-
-
-
-
