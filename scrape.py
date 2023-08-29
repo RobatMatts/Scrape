@@ -6,6 +6,10 @@ import os
 source_url = "https://biotechresearchreport.com/disclaimer/"
 webhook_url = "https://discord.com/api/webhooks/1144028487036981310/JCEHbKYUXLKXqg1Rh6ookQ6YG3iXpFaecc3TZJn_jgB1kRNaBvGhFFqkXfahQXD8Ccdm"
 
+# Fetch current content
+response = requests.get(source_url)
+new_content = response.text
+
 # Extract paragraphs starting with "Pursuant"
 paragraphs = re.findall(r'Pursuant.*?(?=<)', new_content, re.DOTALL)
 
